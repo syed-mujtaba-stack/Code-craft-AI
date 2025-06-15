@@ -1,0 +1,53 @@
+# Core
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-dotenv==1.0.0
+python-multipart==0.0.6
+
+# Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# Async HTTP
+httpx==0.25.1
+aiohttp==3.9.1
+
+# WebSockets
+websockets==12.0
+python-socketio==5.9.0
+python-engineio==4.6.1
+
+# File handling
+aiofiles==23.2.1
+
+# Data validation
+pydantic==2.4.2
+pydantic-settings==2.0.3
+
+# Templates
+jinja2==3.1.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.1
+pytest-cov==4.1.0
+
+# Code quality
+black==23.9.1
+isort==5.12.0
+flake8==6.1.0
+mypy==1.5.1
+
+# Development
+watchfiles==0.20.0
+
+# Production
+gunicorn==21.2.0
+uvloop==0.18.0
+
+# Optional: Database (uncomment if needed)
+# sqlalchemy==2.0.21
+# databases[postgresql]==0.8.0
+# alembic==1.12.1

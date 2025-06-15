@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 h-[calc(100vh-8rem)]">
+    <!-- Code Editor -->
+    <div class="lg:col-span-2 bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gray-900 text-gray-300 px-4 py-2 flex justify-between items-center">
+            <div class="flex space-x-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div id="fileName" class="text-sm">main.py</div>
+        </div>
+        <textarea id="codeEditor"># Welcome to CodeCraft AI!
+# Start coding or use the AI assistant to generate code.
+
+def hello_world():
+    print("Hello, World!")
+
+hello_world()</textarea>
+    </div>
+
+    <!-- Output and AI Panel -->
+    <div class="flex flex-col space-y-4">
+        <!-- Output Panel -->
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex-1">
+            <div class="bg-gray-900 text-gray-300 px-4 py-2">Output</div>
+            <div id="output" class="p-4 h-64 overflow-auto bg-gray-900 text-green-400 font-mono text-sm">
+                <!-- Output will be displayed here -->
+            </div>
+        </div>
+
+        <!-- AI Panel -->
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex-1">
+            <div class="bg-gray-900 text-gray-300 px-4 py-2">AI Assistant</div>
+            <div class="p-4">
+                <textarea 
+                    id="aiPrompt" 
+                    class="w-full h-24 p-2 bg-gray-700 text-white rounded mb-2"
+                    placeholder="Ask the AI to generate or explain code..."></textarea>
+                <button id="aiGenerateBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded">
+                    Generate Code
+                </button>
+                <div id="aiResponse" class="mt-4 text-sm bg-gray-700 p-3 rounded hidden">
+                    <!-- AI response will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Initialize CodeMirror -->
+<script>
+    const editor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+        mode: 'python',
+        theme: 'dracula',
+        lineNumbers: true,
+        autoCloseTags: true,
+        autoCloseBrackets: true,
+        lineWrapping: true,
+        tabSize: 4,
+    });
+
+    // Set editor height to fill available space
+    editor.setSize('100%', 'calc(100% - 2rem)');
+
+    // Handle language change
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+        const mode = {
+            'python': 'python',
+            'javascript': 'javascript',
+            'html': 'htmlmixed',
+            'css': 'css'
+        }[e.target.value];
+        
+        editor.setOption('mode', mode);
+        document.getElementById('fileName').textContent = `main.${e.target.value}`;
+    });
+</script>
+{% endblock %}
